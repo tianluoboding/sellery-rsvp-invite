@@ -1,0 +1,60 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Confetti Pattern SVG -->
+  <!-- 彩纸图案SVG -->
+  
+  <defs>
+    <!-- Confetti pieces pattern -->
+    <pattern id="confetti-pattern" patternUnits="userSpaceOnUse" width="20" height="20">
+      <!-- Various colored confetti pieces -->
+      <circle cx="2" cy="3" r="1" fill="#ff6b6b" opacity="0.7"/>
+      <rect x="8" y="1" width="2" height="2" fill="#4ecdc4" opacity="0.7"/>
+      <polygon points="15,2 17,2 16,4" fill="#45b7d1" opacity="0.7"/>
+      <circle cx="5" cy="8" r="0.8" fill="#96ceb4" opacity="0.7"/>
+      <rect x="12" y="6" width="1.5" height="1.5" fill="#feca57" opacity="0.7"/>
+      <polygon points="18,8 20,8 19,10" fill="#ff9ff3" opacity="0.7"/>
+      <circle cx="3" cy="12" r="0.6" fill="#54a0ff" opacity="0.7"/>
+      <rect x="10" y="10" width="2" height="1" fill="#5f27cd" opacity="0.7"/>
+      <polygon points="16,12 18,12 17,14" fill="#00d2d3" opacity="0.7"/>
+      <circle cx="7" cy="16" r="0.7" fill="#ff6348" opacity="0.7"/>
+      <rect x="14" y="14" width="1" height="2" fill="#ff9f43" opacity="0.7"/>
+      <polygon points="1,18 3,18 2,20" fill="#10ac84" opacity="0.7"/>
+    </pattern>
+    
+    <!-- Alternative smaller confetti -->
+    <pattern id="small-confetti" patternUnits="userSpaceOnUse" width="15" height="15">
+      <circle cx="3" cy="2" r="0.5" fill="#ff6b6b" opacity="0.5"/>
+      <rect x="8" y="1" width="1" height="1" fill="#4ecdc4" opacity="0.5"/>
+      <circle cx="12" cy="4" r="0.4" fill="#45b7d1" opacity="0.5"/>
+      <rect x="2" y="8" width="1" height="1" fill="#96ceb4" opacity="0.5"/>
+      <circle cx="10" cy="10" r="0.3" fill="#feca57" opacity="0.5"/>
+      <rect x="5" y="12" width="1" height="1" fill="#ff9ff3" opacity="0.5"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background with confetti pattern -->
+  <rect width="100%" height="100%" fill="url(#confetti-pattern)"/>
+  
+  <!-- Additional scattered confetti -->
+  <g opacity="0.3">
+    <circle cx="25" cy="15" r="1" fill="#ff6b6b"/>
+    <rect x="35" y="25" width="2" height="1" fill="#4ecdc4"/>
+    <circle cx="45" cy="35" r="0.8" fill="#45b7d1"/>
+    <rect x="55" y="45" width="1" height="2" fill="#96ceb4"/>
+    <circle cx="65" cy="55" r="0.6" fill="#feca57"/>
+    <rect x="75" y="65" width="1.5" height="1" fill="#ff9ff3"/>
+    <circle cx="85" cy="75" r="0.7" fill="#54a0ff"/>
+    <rect x="15" y="85" width="1" height="1.5" fill="#5f27cd"/>
+  </g>
+  
+  <!-- More scattered pieces -->
+  <g opacity="0.2">
+    <circle cx="15" cy="25" r="0.5" fill="#ff6348"/>
+    <rect x="25" y="35" width="1" height="1" fill="#00d2d3"/>
+    <circle cx="35" cy="45" r="0.4" fill="#ff9f43"/>
+    <rect x="45" y="55" width="1.5" height="0.8" fill="#10ac84"/>
+    <circle cx="55" cy="65" r="0.6" fill="#ff6b6b"/>
+    <rect x="65" y="75" width="0.8" height="1.2" fill="#4ecdc4"/>
+    <circle cx="75" cy="85" r="0.5" fill="#45b7d1"/>
+    <rect x="85" y="15" width="1" height="1" fill="#96ceb4"/>
+  </g>
+</svg>

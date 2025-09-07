@@ -1,0 +1,182 @@
+// Google Sheets Integration for Custom Form
+// 自定义表单的Google Sheets集成
+
+// Configuration
+var SPREADSHEET_ID = "YOUR_SPREADSHEET_ID"; // Replace with your Google Sheets ID
+var SHEET_NAME = "RSVP Responses";
+var ORGANIZER_EMAIL = "tianluoboding@gmail.com";
+
+// Function to handle form submission
+function doPost(e) {
+  try {
+    // Parse the incoming data
+    const data = JSON.parse(e.postData.contents);
+    
+    // Add timestamp
+    data.timestamp = new Date().toISOString();
+    
+    // Save to Google Sheets
+    const result = saveToSheet(data);
+    
+    // Send notification email
+    sendNotificationEmail(data);
+    
+    // Return success response
+    return ContentService
+      .createTextOutput(JSON.stringify({success: true, id: result}))
+      .setMimeType(ContentService.MimeType.JSON);
+      
+  } catch (error) {
+    console.error('Error processing form submission:', error);
+    return ContentService
+      .createTextOutput(JSON.stringify({success: false, error: error.toString()}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+// Function to save data to Google Sheets
+function saveToSheet(data) {
+  try {
+    // Open the spreadsheet
+    const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+    let sheet = spreadsheet.getSheetByName(SHEET_NAME);
+    
+    // Create sheet if it doesn't exist
+    if (!sheet) {
+      sheet = spreadsheet.insertSheet(SHEET_NAME);
+      
+      // Add headers
+      const headers = [
+        "Timestamp",
+        "Full Name",
+        "Attending",
+        "Dietary Preference",
+        "Allergies",
+        "Contact Method",
+        "Arrival Time",
+        "Notes"
+      ];
+      
+      sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+      
+      // Format headers
+      sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold");
+      sheet.getRange(1, 1, 1, headers.length).setBackground("#f0f0f0");
+      
+      // Auto-resize columns
+      sheet.autoResizeColumns(1, headers.length);
+    }
+    
+    // Add new row
+    const newRow = [
+      data.timestamp,
+      data.name,
+      data.attending,
+      data.dietary || "",
+      data.allergies || "",
+      data.contact,
+      data.arrival || "",
+      data.notes || ""
+    ];
+    
+    sheet.appendRow(newRow);
+    
+    return "Row added successfully";
+    
+  } catch (error) {
+    console.error('Error saving to sheet:', error);
+    throw error;
+  }
+}
+
+// Function to send notification email
+function sendNotificationEmail(data) {
+  try {
+    const subject = "New RSVP Submission - Sellery NYC Anniversary";
+    
+    const body = `New RSVP Submission:
+
+Name: ${data.name}
+Attending: ${data.attending}
+Dietary Preference: ${data.dietary || "No preference"}
+Allergies: ${data.allergies || "None"}
+Contact: ${data.contact}
+Arrival Time: ${data.arrival || "Not specified"}
+Notes: ${data.notes || "None"}
+
+Submitted at: ${data.timestamp}
+
+---
+Sellery NYC Anniversary Celebration RSVP System`;
+
+    GmailApp.sendEmail(ORGANIZER_EMAIL, subject, body);
+    console.log("Notification email sent successfully");
+    
+  } catch (error) {
+    console.error("Error sending notification email:", error);
+  }
+}
+
+// Function to create the spreadsheet (run this once to set up)
+function createSpreadsheet() {
+  try {
+    const spreadsheet = SpreadsheetApp.create("Sellery NYC Anniversary RSVP Responses");
+    const sheet = spreadsheet.getActiveSheet();
+    
+    // Add headers
+    const headers = [
+      "Timestamp",
+      "Full Name", 
+      "Attending",
+      "Dietary Preference",
+      "Allergies",
+      "Contact Method",
+      "Arrival Time",
+      "Notes"
+    ];
+    
+    sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+    
+    // Format headers
+    sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold");
+    sheet.getRange(1, 1, 1, headers.length).setBackground("#f0f0f0");
+    
+    // Auto-resize columns
+    sheet.autoResizeColumns(1, headers.length);
+    
+    console.log("Spreadsheet created successfully!");
+    console.log("Spreadsheet ID:", spreadsheet.getId());
+    console.log("Spreadsheet URL:", spreadsheet.getUrl());
+    
+    return {
+      id: spreadsheet.getId(),
+      url: spreadsheet.getUrl()
+    };
+    
+  } catch (error) {
+    console.error("Error creating spreadsheet:", error);
+    throw error;
+  }
+}
+
+// Function to test the integration
+function testIntegration() {
+  const testData = {
+    name: "Test User",
+    attending: "Yes",
+    dietary: "Vegetarian",
+    allergies: "None",
+    contact: "test@example.com",
+    arrival: "On time",
+    notes: "Test submission"
+  };
+  
+  try {
+    const result = saveToSheet(testData);
+    console.log("Test successful:", result);
+    return result;
+  } catch (error) {
+    console.error("Test failed:", error);
+    throw error;
+  }
+}

@@ -1,0 +1,514 @@
+/* CSS Custom Properties for Theme System */
+:root {
+  /* Warm Pastel Theme (Default) */
+  --primary-color: #6C5CE7;
+  --secondary-color: #A29BFE;
+  --accent-color: #FD79A8;
+  --background-color: #FFF8F0;
+  --surface-color: #FFFFFF;
+  --text-primary: #2D3436;
+  --text-secondary: #636E72;
+  --border-color: #E9ECEF;
+  --shadow-color: rgba(108, 92, 231, 0.1);
+  --gradient-primary: linear-gradient(135deg, #6C5CE7, #A29BFE);
+  --gradient-secondary: linear-gradient(135deg, #FD79A8, #FDCB6E);
+}
+
+/* Party Pop Theme */
+[data-theme="party-pop"] {
+  --primary-color: #E84393;
+  --secondary-color: #FF7675;
+  --accent-color: #FDCB6E;
+  --background-color: #FFF0F5;
+  --surface-color: #FFFFFF;
+  --text-primary: #2D3436;
+  --text-secondary: #636E72;
+  --border-color: #FFE0E6;
+  --shadow-color: rgba(232, 67, 147, 0.15);
+  --gradient-primary: linear-gradient(135deg, #E84393, #FF7675);
+  --gradient-secondary: linear-gradient(135deg, #FDCB6E, #55EFC4);
+}
+
+/* Formal Minimal Theme */
+[data-theme="formal-minimal"] {
+  --primary-color: #2D3436;
+  --secondary-color: #636E72;
+  --accent-color: #74B9FF;
+  --background-color: #F8F9FA;
+  --surface-color: #FFFFFF;
+  --text-primary: #2D3436;
+  --text-secondary: #636E72;
+  --border-color: #DEE2E6;
+  --shadow-color: rgba(45, 52, 54, 0.08);
+  --gradient-primary: linear-gradient(135deg, #2D3436, #636E72);
+  --gradient-secondary: linear-gradient(135deg, #74B9FF, #0984E3);
+}
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--background-color);
+  overflow-x: hidden;
+}
+
+/* Confetti Background */
+.confetti-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.confetti-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Language and Theme Toggles */
+.language-toggle,
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  z-index: 1000;
+}
+
+.language-toggle {
+  right: 20px;
+}
+
+.theme-toggle {
+  right: 80px;
+}
+
+.lang-btn,
+.theme-btn {
+  background: var(--surface-color);
+  border: 2px solid var(--border-color);
+  border-radius: 50px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.lang-btn:hover,
+.theme-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.theme-icon {
+  font-size: 16px;
+}
+
+/* Container */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Hero Section */
+.hero {
+  margin-bottom: 40px;
+}
+
+.hero-banner {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px var(--shadow-color);
+}
+
+.banner-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--gradient-primary);
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
+
+.event-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-tagline {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+/* When & Where Section */
+.when-where {
+  margin-bottom: 40px;
+}
+
+.when-where h2,
+.schedule h2,
+.rsvp h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.info-card {
+  background: var(--surface-color);
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 4px 20px var(--shadow-color);
+  border: 1px solid var(--border-color);
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  gap: 15px;
+}
+
+.info-item:last-child {
+  margin-bottom: 0;
+}
+
+.info-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.info-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.venue-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.venue-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.venue-address {
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.map-button {
+  display: inline-block;
+  background: var(--gradient-primary);
+  color: white;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.map-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--shadow-color);
+}
+
+/* Schedule Section */
+.schedule {
+  margin-bottom: 40px;
+}
+
+.schedule-card {
+  background: var(--surface-color);
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 4px 20px var(--shadow-color);
+  border: 1px solid var(--border-color);
+}
+
+.schedule-list {
+  list-style: none;
+}
+
+.schedule-list li {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 1rem;
+}
+
+.schedule-list li:last-child {
+  border-bottom: none;
+}
+
+.schedule-list li::before {
+  content: "⏰";
+  margin-right: 15px;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+/* RSVP Section */
+.rsvp {
+  margin-bottom: 40px;
+}
+
+.rsvp-card {
+  background: var(--surface-color);
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 4px 20px var(--shadow-color);
+  border: 1px solid var(--border-color);
+}
+
+.form-container {
+  margin-bottom: 20px;
+}
+
+#rsvp-form {
+  border-radius: 12px;
+  min-height: 600px;
+}
+
+.form-fallback {
+  text-align: center;
+  padding: 20px;
+  background: var(--background-color);
+  border-radius: 12px;
+  border: 2px dashed var(--border-color);
+}
+
+.form-fallback p {
+  margin-bottom: 15px;
+  color: var(--text-secondary);
+}
+
+.fallback-link {
+  display: inline-block;
+  background: var(--gradient-secondary);
+  color: white;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.fallback-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+/* Footer */
+.footer {
+  background: var(--surface-color);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 4px 20px var(--shadow-color);
+  border: 1px solid var(--border-color);
+  margin-top: 40px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+.footer-section h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 8px;
+}
+
+.footer-section p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.footer-bottom p {
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+  
+  .event-title {
+    font-size: 1.6rem;
+  }
+  
+  .hero-tagline {
+    font-size: 1rem;
+  }
+  
+  .hero-overlay {
+    padding: 20px;
+  }
+  
+  .info-card,
+  .schedule-card,
+  .rsvp-card,
+  .footer {
+    padding: 20px;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .language-toggle,
+  .theme-toggle {
+    top: 15px;
+  }
+  
+  .language-toggle {
+    right: 15px;
+  }
+  
+  .theme-toggle {
+    right: 70px;
+  }
+  
+  .lang-btn,
+  .theme-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-image {
+    height: 250px;
+  }
+  
+  .event-title {
+    font-size: 1.4rem;
+  }
+  
+  .hero-tagline {
+    font-size: 0.95rem;
+  }
+  
+  .when-where h2,
+  .schedule h2,
+  .rsvp h2 {
+    font-size: 1.5rem;
+  }
+  
+  #rsvp-form {
+    min-height: 500px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Focus Styles */
+button:focus,
+a:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --border-color: #000000;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+  }
+  
+  [data-theme="party-pop"] {
+    --border-color: #000000;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+  }
+  
+  [data-theme="formal-minimal"] {
+    --border-color: #000000;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Print Styles */
+@media print {
+  .language-toggle,
+  .theme-toggle,
+  .confetti-bg {
+    display: none;
+  }
+  
+  .container {
+    max-width: none;
+    padding: 0;
+  }
+  
+  .hero-banner,
+  .info-card,
+  .schedule-card,
+  .rsvp-card,
+  .footer {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="warm-pastel">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friends Gathering · 一周年小聚 - RSVP</title>
+    <meta name="description" content="Join us for a celebration gathering! RSVP for our anniversary event on October 12, 2025.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Friends Gathering · 一周年小聚">
+    <meta property="og:description" content="Join us for a celebration gathering! RSVP for our anniversary event.">
+    <meta property="og:image" content="./assets/banner.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Friends Gathering · 一周年小聚">
+    <meta property="twitter:description" content="Join us for a celebration gathering! RSVP for our anniversary event.">
+    <meta property="twitter:image" content="./assets/banner.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Confetti Background -->
+    <div class="confetti-bg">
+        <svg class="confetti-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+            <defs>
+                <pattern id="confetti" patternUnits="userSpaceOnUse" width="20" height="20">
+                    <circle cx="10" cy="10" r="1" fill="#ff6b6b" opacity="0.3"/>
+                    <circle cx="5" cy="15" r="0.8" fill="#4ecdc4" opacity="0.3"/>
+                    <circle cx="15" cy="5" r="0.6" fill="#45b7d1" opacity="0.3"/>
+                    <circle cx="2" cy="8" r="0.7" fill="#96ceb4" opacity="0.3"/>
+                    <circle cx="18" cy="12" r="0.5" fill="#feca57" opacity="0.3"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#confetti)"/>
+        </svg>
+    </div>
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button id="lang-toggle" class="lang-btn" aria-label="切换语言">
+            <span data-lang="zh">EN</span>
+            <span data-lang="en" style="display: none;">中文</span>
+        </button>
+    </div>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button id="theme-toggle" class="theme-btn" aria-label="切换主题">
+            <span class="theme-icon">🎨</span>
+        </button>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-banner">
+                <img src="./assets/banner.jpg" alt="Event Banner" class="banner-image">
+                <div class="hero-overlay">
+                    <h1 class="event-title" data-zh="Friends Gathering · 一周年小聚" data-en="Friends Gathering · Anniversary Celebration">Friends Gathering · 一周年小聚</h1>
+                    <p class="hero-tagline" data-zh="我们要团建啦，一起来庆祝！" data-en="Let's get together and celebrate!">我们要团建啦，一起来庆祝！</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- When & Where Section -->
+        <section class="when-where">
+            <h2 data-zh="时间地点" data-en="When & Where">时间地点</h2>
+            <div class="info-card">
+                <div class="info-item">
+                    <span class="info-icon">📅</span>
+                    <span class="info-text" data-zh="Sat, Oct 12, 2025 · 5:00–8:30 PM" data-en="Sat, Oct 12, 2025 · 5:00–8:30 PM">Sat, Oct 12, 2025 · 5:00–8:30 PM</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">📍</span>
+                    <div class="venue-info">
+                        <span class="venue-name" data-zh="Riverside Park Lawn" data-en="Riverside Park Lawn">Riverside Park Lawn</span>
+                        <span class="venue-address" data-zh="123 Riverside Dr, New York, NY" data-en="123 Riverside Dr, New York, NY">123 Riverside Dr, New York, NY</span>
+                    </div>
+                </div>
+                <a href="https://maps.google.com/?q=123+Riverside+Dr+NY" target="_blank" class="map-button" data-zh="查看地图" data-en="View Map">查看地图</a>
+            </div>
+        </section>
+
+        <!-- Schedule Section -->
+        <section class="schedule">
+            <h2 data-zh="活动流程" data-en="Schedule">活动流程</h2>
+            <div class="schedule-card">
+                <ul class="schedule-list" id="schedule-list">
+                    <!-- Schedule items will be populated by JavaScript -->
+                </ul>
+            </div>
+        </section>
+
+        <!-- RSVP Section -->
+        <section class="rsvp">
+            <h2 data-zh="确认参加" data-en="RSVP">确认参加</h2>
+            <div class="rsvp-card">
+                <div class="form-container">
+                    <iframe 
+                        id="rsvp-form"
+                        src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true"
+                        width="100%" 
+                        height="800" 
+                        frameborder="0" 
+                        marginheight="0" 
+                        marginwidth="0"
+                        title="RSVP Form">
+                        正在加载表单...
+                    </iframe>
+                </div>
+                <div class="form-fallback">
+                    <p data-zh="如果表单无法显示，请点击下方链接：" data-en="If the form doesn't load, please click the link below:">如果表单无法显示，请点击下方链接：</p>
+                    <a href="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform" target="_blank" class="fallback-link" data-zh="在新标签页中打开表单" data-en="Open form in new tab">在新标签页中打开表单</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 data-zh="主办方" data-en="Hosts">主办方</h3>
+                    <p data-zh="Prema & Kyle" data-en="Prema & Kyle">Prema & Kyle</p>
+                </div>
+                <div class="footer-section">
+                    <h3 data-zh="着装要求" data-en="Dress Code">着装要求</h3>
+                    <p data-zh="Smart casual" data-en="Smart casual">Smart casual</p>
+                </div>
+                <div class="footer-section">
+                    <h3 data-zh="联系方式" data-en="Contact">联系方式</h3>
+                    <p data-zh="WeChat: kyle_t · Phone: (xxx) xxx-xxxx" data-en="WeChat: kyle_t · Phone: (xxx) xxx-xxxx">WeChat: kyle_t · Phone: (xxx) xxx-xxxx</p>
+                </div>
+                <div class="footer-section">
+                    <h3 data-zh="截止时间" data-en="RSVP Deadline">截止时间</h3>
+                    <p data-zh="Oct 5, 2025" data-en="Oct 5, 2025">Oct 5, 2025</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-zh="期待与您相见！" data-en="Looking forward to seeing you!">期待与您相见！</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

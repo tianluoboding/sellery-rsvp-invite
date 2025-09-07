@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sellery NYC Anniversary Celebration - RSVP</title>
+    <meta name="description" content="Join us for Sellery NYC's Anniversary Celebration on September 12th, 2025">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            overflow-x: hidden;
+            font-weight: 400;
+        }
+
+        /* Background with TikTok-inspired gradient */
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 50%, #f8b500 100%);
+            z-index: -2;
+        }
+
+        /* Background image as decorative element */
+        .background-image {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 40%;
+            height: 80%;
+            background: url('./assets/background_imgage.jpg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 20px;
+            opacity: 0.3;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        .background-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255,255,255,0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .logo-container {
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+        }
+
+        .logo-wrapper {
+            position: relative;
+            display: inline-block;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .logo {
+            max-width: 150px;
+            height: auto;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            color: white;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            letter-spacing: 0.01em;
+        }
+
+        .event-info {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .event-info h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .info-item {
+            margin: 0.8rem 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .info-icon {
+            font-size: 1.2rem;
+        }
+
+        .dress-code {
+            background: rgba(255,255,255,0.2);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            margin: 1rem 0;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .photo-booth {
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-arrow {
+            width: 30px;
+            height: 30px;
+            border: 2px solid white;
+            border-top: none;
+            border-right: none;
+            transform: rotate(-45deg);
+            opacity: 0.7;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: white;
+            min-height: 100vh;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            padding: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-title h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .form-title p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            font-family: 'Space Grotesk', sans-serif;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #2c3e50;
+            font-size: 1rem;
+            letter-spacing: 0.01em;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            font-family: 'Space Grotesk', sans-serif;
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+            font-weight: 400;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        .submit-btn {
+            font-family: 'Poppins', sans-serif;
+            width: 100%;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 50%, #f8b500 100%);
+            color: white;
+            border: none;
+            padding: 1.2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            letter-spacing: 0.01em;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 10px;
+            color: #155724;
+            margin-top: 2rem;
+        }
+
+        /* Loading Spinner */
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .event-info {
+                padding: 1.5rem;
+            }
+            
+            .form-container {
+                padding: 2rem;
+                margin: 0 1rem;
+            }
+            
+            .form-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .form-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background -->
+    <div class="background-container"></div>
+    <div class="background-image"></div>
+    <div class="background-pattern"></div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="logo-container">
+            <div class="logo-wrapper">
+                <div class="logo-glow"></div>
+                <img src="./assets/Sellery_logo.jpg" alt="Sellery NYC Logo" class="logo">
+            </div>
+        </div>
+        
+        <div class="hero-content">
+            <h1 class="hero-title">🎉 Join Sellery NYC's Anniversary Celebration! 🎉</h1>
+            <p class="hero-subtitle">Celebrating our journey together and the exciting path ahead</p>
+            
+            <div class="event-info">
+                <h3>Event Details</h3>
+                <div class="info-item">
+                    <span class="info-icon">📅</span>
+                    <span>Friday, September 12, 2025 · 6:00–11:00 PM</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">📍</span>
+                    <span>265 West 37th Street Suite 203</span>
+                </div>
+                <div class="dress-code">
+                    ✨ Dress Code: Dressy Attire ✨
+                </div>
+                <div class="photo-booth">
+                    📸 Don't forget to stop by our Photo Booth!
+                </div>
+            </div>
+            
+            <div style="font-size: 1.1rem; line-height: 1.8; max-width: 600px; margin: 0 auto; margin-bottom: 4rem;">
+                <p style="margin-bottom: 1rem;">Please join us for a dinner celebration on September 12th.</p>
+                <p style="margin-bottom: 1rem;">We want to show our appreciation for your dedication and invite you to celebrate the exciting journey ahead.</p>
+                <p>We look forward to sharing a memorable evening with you!</p>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section">
+        <div class="form-container">
+            <div class="form-title">
+                <h2>RSVP Form</h2>
+                <p>Please fill out the form below to confirm your attendance</p>
+            </div>
+            
+            <form id="rsvp-form">
+                <div class="form-group">
+                    <label for="name">Your Full Name <span class="required">*</span></label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="attending">Are you attending? <span class="required">*</span></label>
+                    <select id="attending" name="attending" required>
+                        <option value="">Please select...</option>
+                        <option value="Yes">Yes</option>
+                        <option value="Maybe">Maybe</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="dietary">Dietary Preference</label>
+                    <input type="text" id="dietary" name="dietary" placeholder="e.g., Vegetarian, Vegan, No restrictions">
+                </div>
+                
+                <div class="form-group">
+                    <label for="allergies">Allergies</label>
+                    <input type="text" id="allergies" name="allergies" placeholder="Please list any allergies">
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact">Contact Method <span class="required">*</span></label>
+                    <input type="text" id="contact" name="contact" required placeholder="WeChat ID, Phone number, or Email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="arrival">Arrival Time</label>
+                    <select id="arrival" name="arrival">
+                        <option value="">Please select...</option>
+                        <option value="On time">On time</option>
+                        <option value="A bit late">A bit late</option>
+                        <option value="Not sure">Not sure</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="notes">Notes to Organizer</label>
+                    <textarea id="notes" name="notes" placeholder="Any special requests or comments?"></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Submit RSVP</button>
+                
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Submitting your RSVP...</p>
+                </div>
+                
+                <div class="success-message">
+                    <h3>✅ Thank you!</h3>
+                    <p>Your RSVP has been submitted successfully. We'll send you a reminder closer to the event date.</p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        // Smooth scrolling
+        document.querySelector('.scroll-indicator').addEventListener('click', function() {
+            document.querySelector('.form-section').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Configuration
+        const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_URL'; // Replace with your Apps Script web app URL
+        
+        // Form submission
+        document.getElementById('rsvp-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const submitBtn = form.querySelector('.submit-btn');
+            const loading = form.querySelector('.loading');
+            const successMessage = form.querySelector('.success-message');
+            
+            // Show loading
+            submitBtn.disabled = true;
+            loading.style.display = 'block';
+            
+            // Collect form data
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            
+            try {
+                // Send data to Google Sheets via Apps Script
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Show success message
+                    loading.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    form.style.display = 'none';
+                    
+                    // Scroll to success message
+                    successMessage.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    throw new Error(result.error || 'Submission failed');
+                }
+                
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                alert('There was an error submitting your RSVP. Please try again.');
+                submitBtn.disabled = false;
+                loading.style.display = 'none';
+            }
+        });
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to form inputs
+            const inputs = document.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'translateY(-2px)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
