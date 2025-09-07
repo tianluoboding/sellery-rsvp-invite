@@ -528,7 +528,8 @@
                 
                 <div class="success-message">
                     <h3>✅ Thank you!</h3>
-                    <p>Your RSVP has been submitted successfully. We'll send you a reminder closer to the event date.</p>
+                    <p>Please complete your RSVP in the Google Form that opened in a new tab.</p>
+                    <p>We'll send you a reminder closer to the event date.</p>
                 </div>
             </form>
         </div>
@@ -564,28 +565,19 @@
             const data = Object.fromEntries(formData.entries());
             
             try {
-                // Send data to Google Sheets via Apps Script
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                });
+                // Redirect to Google Form
+                const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScenYnWqnm5ftTncdPWcHyxNhJXj6B3Ui0gRR2vKrKGglLwtA/viewform';
                 
-                const result = await response.json();
+                // Open Google Form in new tab
+                window.open(googleFormUrl, '_blank');
                 
-                if (result.success) {
-                    // Show success message
-                    loading.style.display = 'none';
-                    successMessage.style.display = 'block';
-                    form.style.display = 'none';
-                    
-                    // Scroll to success message
-                    successMessage.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    throw new Error(result.error || 'Submission failed');
-                }
+                // Show success message
+                loading.style.display = 'none';
+                successMessage.style.display = 'block';
+                form.style.display = 'none';
+                
+                // Scroll to success message
+                successMessage.scrollIntoView({ behavior: 'smooth' });
                 
             } catch (error) {
                 console.error('Error submitting form:', error);
