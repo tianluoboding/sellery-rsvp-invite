@@ -581,11 +581,17 @@
                 
                 // Show success message
                 loading.style.display = 'none';
-                successMessage.style.display = 'block';
-                form.style.display = 'none';
+                successMessage.style.display = 'block !important';
+                successMessage.style.visibility = 'visible';
+                successMessage.style.opacity = '1';
+                successMessage.style.position = 'relative';
+                successMessage.style.zIndex = '999';
+                form.style.display = 'none !important';
                 
                 console.log('Success message should be visible now');
                 console.log('Form should be hidden now');
+                console.log('Success message computed style:', window.getComputedStyle(successMessage).display);
+                console.log('Form computed style:', window.getComputedStyle(form).display);
                 
                 // Scroll to success message
                 successMessage.scrollIntoView({ behavior: 'smooth' });
