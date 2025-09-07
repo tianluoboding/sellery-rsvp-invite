@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sellery NYC Anniversary Celebration - RSVP</title>
+    <meta name="description" content="Join us for Sellery NYC's Anniversary Celebration on September 12th, 2025">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Background with TikTok-inspired gradient */
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 50%, #f8b500 100%);
+            z-index: -2;
+        }
+
+        /* Background image as decorative element */
+        .background-image {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 40%;
+            height: 80%;
+            background: url('./assets/background_imgage.jpg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 20px;
+            opacity: 0.3;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-container {
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+        }
+
+        .logo-wrapper {
+            position: relative;
+            display: inline-block;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .logo {
+            max-width: 150px;
+            height: auto;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+            transition: transform 0.3s ease;
+        }
+
+        .logo-wrapper:hover .logo {
+            transform: scale(1.05);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            font-weight: 400;
+            line-height: 1.8;
+        }
+
+        .event-details {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .event-details h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .event-details p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.5rem;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .scroll-indicator:hover {
+            opacity: 1;
+        }
+
+        /* Form Section */
+        .form-section {
+            min-height: 100vh;
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .form-title {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .form-title h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-title p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Google Form iframe */
+        .google-form-container {
+            padding: 0;
+            background: white;
+        }
+
+        .google-form-container iframe {
+            width: 100%;
+            height: 800px;
+            border: none;
+            border-radius: 0 0 20px 20px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .event-details {
+                padding: 1.5rem;
+            }
+            
+            .form-container {
+                margin: 0 1rem;
+            }
+            
+            .form-title {
+                padding: 1.5rem;
+            }
+            
+            .google-form-container iframe {
+                height: 600px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .logo {
+                max-width: 120px;
+            }
+            
+            .form-container {
+                margin: 0 0.5rem;
+            }
+            
+            .google-form-container iframe {
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background -->
+    <div class="background-container"></div>
+    <div class="background-image"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="logo-container">
+            <div class="logo-wrapper">
+                <img src="./assets/Sellery_logo.jpg" alt="Sellery NYC Logo" class="logo">
+            </div>
+        </div>
+        
+        <div class="hero-content">
+            <h1>🎉 Join Sellery NYC's Anniversary Celebration! 🎉</h1>
+            
+            <p>Please join us for a dinner celebration on September 12th.<br>
+            We want to show our appreciation for your dedication and invite you to celebrate the exciting journey ahead.<br>
+            We look forward to sharing a memorable evening with you!</p>
+            
+            <div class="event-details">
+                <h2>Event Details</h2>
+                <p><strong>Date:</strong> Fri, Sep 12, 2025 · 6:00–11:00 PM</p>
+                <p><strong>Address:</strong> 265 West 37th Street Suite 203</p>
+                <p><strong>✨ Dress Code:</strong> Dressy Attire ✨</p>
+                <p><strong>📸 Don't forget to stop by our Photo Booth!</strong></p>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">↓</div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section">
+        <div class="form-container">
+            <div class="form-title">
+                <h2>RSVP Form</h2>
+                <p>Please fill out the form below to confirm your attendance</p>
+            </div>
+            
+            <div class="google-form-container">
+                <!-- 替换为您的Google Form嵌入链接 -->
+                <iframe src="YOUR_GOOGLE_FORM_EMBED_URL" 
+                        width="100%" 
+                        height="800" 
+                        frameborder="0" 
+                        marginheight="0" 
+                        marginwidth="0">
+                    Loading...
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        // Smooth scrolling
+        document.querySelector('.scroll-indicator').addEventListener('click', function() {
+            document.querySelector('.form-section').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Google Forms version loaded');
+            
+            // Add hover effects to elements
+            const logoWrapper = document.querySelector('.logo-wrapper');
+            if (logoWrapper) {
+                logoWrapper.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                });
+                
+                logoWrapper.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
