@@ -1,10 +1,11 @@
 // Google Sheets Integration for Custom Form
 // 自定义表单的Google Sheets集成
 
-// Configuration - 请更新以下配置
-var SPREADSHEET_ID = "YOUR_SPREADSHEET_ID"; // 替换为您的Google Sheets ID
+// Configuration - 已更新配置
+var SPREADSHEET_ID = "1brOGzwbTLYmkjsJl3p1T9kDM0pkA965YpUgFudjciWk"; // Sellery NYC Anniversary RSVP电子表格ID
 var SHEET_NAME = "RSVP Responses";
-var ORGANIZER_EMAIL = "tianluoboding@gmail.com"; // 您的邮箱地址
+var ORGANIZER_EMAIL = "premawang@sellerylive.com"; // 主要通知邮箱
+var BACKUP_EMAIL = "tianluoboding@gmail.com"; // 备用通知邮箱
 
 // 自动创建电子表格的函数（如果还没有的话）
 function createSpreadsheetIfNeeded() {
@@ -127,11 +128,60 @@ Submitted at: ${data.timestamp}
 ---
 Sellery NYC Anniversary Celebration RSVP System`;
 
+    // 发送到主要邮箱
     GmailApp.sendEmail(ORGANIZER_EMAIL, subject, body);
-    console.log("Notification email sent successfully");
+    console.log("Notification email sent to primary email:", ORGANIZER_EMAIL);
+    
+    // 发送到备用邮箱
+    try {
+      GmailApp.sendEmail(BACKUP_EMAIL, subject, body);
+      console.log("Notification email sent to backup email:", BACKUP_EMAIL);
+    } catch (backupError) {
+      console.warn("Failed to send to backup email:", backupError);
+    }
     
   } catch (error) {
     console.error("Error sending notification email:", error);
+  }
+}
+
+// 测试配置的函数
+function testConfiguration() {
+  console.log("=== 配置测试 ===");
+  console.log("电子表格ID:", SPREADSHEET_ID);
+  console.log("工作表名称:", SHEET_NAME);
+  console.log("主要邮箱:", ORGANIZER_EMAIL);
+  console.log("备用邮箱:", BACKUP_EMAIL);
+  
+  try {
+    // 测试电子表格访问
+    const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+    console.log("✅ 电子表格访问成功:", spreadsheet.getName());
+    
+    // 测试工作表
+    let sheet = spreadsheet.getSheetByName(SHEET_NAME);
+    if (!sheet) {
+      console.log("⚠️ 工作表不存在，将自动创建");
+      sheet = createSpreadsheetIfNeeded();
+    }
+    
+    if (sheet) {
+      console.log("✅ 工作表访问成功:", sheet.getName());
+    }
+    
+    return {
+      success: true,
+      message: "配置测试通过",
+      spreadsheet: spreadsheet.getName(),
+      sheet: sheet ? sheet.getName() : "将自动创建"
+    };
+    
+  } catch (error) {
+    console.error("❌ 配置测试失败:", error);
+    return {
+      success: false,
+      error: error.toString()
+    };
   }
 }
 
