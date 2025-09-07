@@ -585,12 +585,26 @@
                 successMessage.style.setProperty('opacity', '1', 'important');
                 successMessage.style.setProperty('position', 'relative', 'important');
                 successMessage.style.setProperty('z-index', '999', 'important');
+                
+                // Hide the entire form container (including title)
+                const formContainer = document.querySelector('.form-container');
+                if (formContainer) {
+                    formContainer.style.setProperty('display', 'none', 'important');
+                }
+                
+                // Also hide the form itself
                 form.style.setProperty('display', 'none', 'important');
                 
                 console.log('Success message should be visible now');
                 console.log('Form should be hidden now');
                 console.log('Success message computed style:', window.getComputedStyle(successMessage).display);
                 console.log('Form computed style:', window.getComputedStyle(form).display);
+                
+                // Check form container
+                const formContainer = document.querySelector('.form-container');
+                if (formContainer) {
+                    console.log('Form container computed style:', window.getComputedStyle(formContainer).display);
+                }
                 
                 // Scroll to success message
                 successMessage.scrollIntoView({ behavior: 'smooth' });
