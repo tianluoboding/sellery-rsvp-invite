@@ -575,10 +575,42 @@
             
             console.log('Form data collected:', data);
             
-            // Simulate form submission
-            setTimeout(function() {
-                console.log('Simulating submission...');
-                
+            // 检查是否配置了Google Script URL
+            if (GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_SCRIPT_URL') {
+                // 演示模式：模拟提交
+                console.log('演示模式：模拟表单提交');
+                setTimeout(function() {
+                    console.log('演示数据:', data);
+                    showSuccessMessage();
+                }, 2000);
+            } else {
+                // 真实模式：发送到Google Sheets
+                console.log('真实模式：发送数据到Google Sheets');
+                fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.success) {
+                        console.log('数据已保存到Google Sheets:', result);
+                        showSuccessMessage();
+                    } else {
+                        throw new Error(result.error || '提交失败');
+                    }
+                })
+                .catch(error => {
+                    console.error('❌ 表单提交错误:', error);
+                    alert('提交失败，请重试。如果问题持续存在，请联系组织者。');
+                    submitBtn.disabled = false;
+                    loading.style.display = 'none';
+                });
+            }
+            
+            function showSuccessMessage() {
                 // Show success message
                 loading.style.display = 'none';
                 successMessage.style.setProperty('display', 'block', 'important');
@@ -596,22 +628,11 @@
                 // Hide the form itself
                 form.style.setProperty('display', 'none', 'important');
                 
-                console.log('=== NEW CODE VERSION ===');
-                console.log('Success message should be visible now');
-                console.log('Form should be hidden now');
-                console.log('Success message computed style:', window.getComputedStyle(successMessage).display);
-                console.log('Form computed style:', window.getComputedStyle(form).display);
-                
-                // Check form title
-                if (formTitle) {
-                    console.log('Form title computed style:', window.getComputedStyle(formTitle).display);
-                }
-                
                 // Scroll to success message
                 successMessage.scrollIntoView({ behavior: 'smooth' });
                 
-                console.log('Success! Form submitted with data:', data);
-            }, 2000);
+                console.log('✅ 表单提交成功！');
+            }
         });
 
         // Add some interactive effects

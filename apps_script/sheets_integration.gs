@@ -1,10 +1,41 @@
 // Google Sheets Integration for Custom Form
 // 自定义表单的Google Sheets集成
 
-// Configuration
-var SPREADSHEET_ID = "YOUR_SPREADSHEET_ID"; // Replace with your Google Sheets ID
+// Configuration - 请更新以下配置
+var SPREADSHEET_ID = "YOUR_SPREADSHEET_ID"; // 替换为您的Google Sheets ID
 var SHEET_NAME = "RSVP Responses";
-var ORGANIZER_EMAIL = "tianluoboding@gmail.com";
+var ORGANIZER_EMAIL = "tianluoboding@gmail.com"; // 您的邮箱地址
+
+// 自动创建电子表格的函数（如果还没有的话）
+function createSpreadsheetIfNeeded() {
+  if (SPREADSHEET_ID === "YOUR_SPREADSHEET_ID") {
+    console.log("请先更新SPREADSHEET_ID配置");
+    return null;
+  }
+  
+  try {
+    const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+    let sheet = spreadsheet.getSheetByName(SHEET_NAME);
+    
+    if (!sheet) {
+      sheet = spreadsheet.insertSheet(SHEET_NAME);
+      // 设置表头
+      const headers = [
+        "Timestamp", "Full Name", "Attending", "Dietary Preference", 
+        "Allergies", "Contact Method", "Arrival Time", "Notes to Organizer"
+      ];
+      sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+      sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold");
+      sheet.getRange(1, 1, 1, headers.length).setBackground("#f0f0f0");
+      sheet.autoResizeColumns(1, headers.length);
+    }
+    
+    return sheet;
+  } catch (error) {
+    console.error("无法访问电子表格，请检查SPREADSHEET_ID:", error);
+    return null;
+  }
+}
 
 // Function to handle form submission
 function doPost(e) {
@@ -37,37 +68,13 @@ function doPost(e) {
 // Function to save data to Google Sheets
 function saveToSheet(data) {
   try {
-    // Open the spreadsheet
-    const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
-    let sheet = spreadsheet.getSheetByName(SHEET_NAME);
-    
-    // Create sheet if it doesn't exist
+    // 确保电子表格存在
+    const sheet = createSpreadsheetIfNeeded();
     if (!sheet) {
-      sheet = spreadsheet.insertSheet(SHEET_NAME);
-      
-      // Add headers
-      const headers = [
-        "Timestamp",
-        "Full Name",
-        "Attending",
-        "Dietary Preference",
-        "Allergies",
-        "Contact Method",
-        "Arrival Time",
-        "Notes"
-      ];
-      
-      sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
-      
-      // Format headers
-      sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold");
-      sheet.getRange(1, 1, 1, headers.length).setBackground("#f0f0f0");
-      
-      // Auto-resize columns
-      sheet.autoResizeColumns(1, headers.length);
+      throw new Error("无法访问电子表格");
     }
     
-    // Add new row
+    // 添加新行数据
     const newRow = [
       data.timestamp,
       data.name,
