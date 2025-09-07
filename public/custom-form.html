@@ -525,12 +525,12 @@
                     <div class="spinner"></div>
                     <p>Submitting your RSVP...</p>
                 </div>
-                
-                <div class="success-message">
-                    <h3>✅ Thank you!</h3>
-                    <p>Your RSVP has been submitted successfully. We'll send you a reminder closer to the event date.</p>
-                </div>
             </form>
+            
+            <div class="success-message">
+                <h3>✅ Thank you!</h3>
+                <p>Your RSVP has been submitted successfully. We'll send you a reminder closer to the event date.</p>
+            </div>
         </div>
     </section>
 
@@ -552,9 +552,10 @@
             console.log('Form submit event triggered!');
             
             const form = e.target;
+            const formContainer = form.closest('.form-container');
             const submitBtn = form.querySelector('.submit-btn');
             const loading = form.querySelector('.loading');
-            const successMessage = form.querySelector('.success-message');
+            const successMessage = formContainer.querySelector('.success-message');
             
             console.log('Elements found:', {
                 form: form,
@@ -586,13 +587,13 @@
                 successMessage.style.setProperty('position', 'relative', 'important');
                 successMessage.style.setProperty('z-index', '999', 'important');
                 
-                // Hide the entire form container (including title)
-                const formContainer = document.querySelector('.form-container');
-                if (formContainer) {
-                    formContainer.style.setProperty('display', 'none', 'important');
+                // Hide the form and form title, but keep the container for success message
+                const formTitle = formContainer.querySelector('.form-title');
+                if (formTitle) {
+                    formTitle.style.setProperty('display', 'none', 'important');
                 }
                 
-                // Also hide the form itself
+                // Hide the form itself
                 form.style.setProperty('display', 'none', 'important');
                 
                 console.log('Success message should be visible now');
@@ -600,9 +601,10 @@
                 console.log('Success message computed style:', window.getComputedStyle(successMessage).display);
                 console.log('Form computed style:', window.getComputedStyle(form).display);
                 
-                // Check form container
-                if (formContainer) {
-                    console.log('Form container computed style:', window.getComputedStyle(formContainer).display);
+                // Check form title
+                const formTitle = formContainer.querySelector('.form-title');
+                if (formTitle) {
+                    console.log('Form title computed style:', window.getComputedStyle(formTitle).display);
                 }
                 
                 // Scroll to success message
