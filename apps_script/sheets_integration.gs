@@ -2,7 +2,7 @@
 // 自定义表单的Google Sheets集成
 
 // Configuration - 已更新配置
-var SPREADSHEET_ID = "1brOGzwbTLYmkjsJl3p1T9kDM0pkA965YpUgFudjciWk"; // Sellery NYC Anniversary RSVP电子表格ID
+var SPREADSHEET_ID = "YOUR_SPREADSHEET_ID"; // 将在createSpreadsheet()函数中自动设置
 var SHEET_NAME = "RSVP Responses";
 var ORGANIZER_EMAIL = "premawang@sellerylive.com"; // 主要通知邮箱
 var BACKUP_EMAIL = "tianluoboding@gmail.com"; // 备用通知邮箱
@@ -190,6 +190,14 @@ function createSpreadsheet() {
   try {
     const spreadsheet = SpreadsheetApp.create("Sellery NYC Anniversary RSVP Responses");
     const sheet = spreadsheet.getActiveSheet();
+    
+    // 自动设置SPREADSHEET_ID
+    SPREADSHEET_ID = spreadsheet.getId();
+    
+    console.log("✅ 新电子表格创建成功!");
+    console.log("电子表格ID:", SPREADSHEET_ID);
+    console.log("电子表格URL:", spreadsheet.getUrl());
+    console.log("请复制这个ID到配置中:", SPREADSHEET_ID);
     
     // Add headers
     const headers = [
