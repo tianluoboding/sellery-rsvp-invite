@@ -520,6 +520,7 @@
                 </div>
                 
                 <button type="submit" class="submit-btn">Submit RSVP</button>
+                <button type="button" id="test-btn" style="margin-left: 10px; background: #ff6b9d; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Test Button</button>
                 
                 <div class="loading">
                     <div class="spinner"></div>
@@ -556,9 +557,17 @@
             const loading = form.querySelector('.loading');
             const successMessage = form.querySelector('.success-message');
             
+            console.log('Elements found:', {
+                form: form,
+                submitBtn: submitBtn,
+                loading: loading,
+                successMessage: successMessage
+            });
+            
             // Show loading
             submitBtn.disabled = true;
             loading.style.display = 'block';
+            console.log('Loading shown, submitBtn disabled');
             
             // Collect form data
             const formData = new FormData(form);
@@ -574,6 +583,9 @@
                 loading.style.display = 'none';
                 successMessage.style.display = 'block';
                 form.style.display = 'none';
+                
+                console.log('Success message should be visible now');
+                console.log('Form should be hidden now');
                 
                 // Scroll to success message
                 successMessage.scrollIntoView({ behavior: 'smooth' });
@@ -593,6 +605,15 @@
                 return;
             }
             console.log('Form found:', form);
+            
+            // Test button
+            const testBtn = document.getElementById('test-btn');
+            if (testBtn) {
+                testBtn.addEventListener('click', function() {
+                    console.log('Test button clicked!');
+                    alert('Test button works! JavaScript is running.');
+                });
+            }
             
             // Add hover effects to form inputs
             const inputs = document.querySelectorAll('input, select, textarea');
