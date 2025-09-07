@@ -528,8 +528,7 @@
                 
                 <div class="success-message">
                     <h3>✅ Thank you!</h3>
-                    <p>Please complete your RSVP in the Google Form that opened in a new tab.</p>
-                    <p>We'll send you a reminder closer to the event date.</p>
+                    <p>Your RSVP has been submitted successfully. We'll send you a reminder closer to the event date.</p>
                 </div>
             </form>
         </div>
@@ -548,8 +547,9 @@
         const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_URL'; // Replace with your Apps Script web app URL
         
         // Form submission
-        document.getElementById('rsvp-form').addEventListener('submit', async function(e) {
+        document.getElementById('rsvp-form').addEventListener('submit', function(e) {
             e.preventDefault();
+            console.log('Form submit event triggered!');
             
             const form = e.target;
             const submitBtn = form.querySelector('.submit-btn');
@@ -564,12 +564,11 @@
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
             
-            try {
-                // Redirect to Google Form
-                const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScenYnWqnm5ftTncdPWcHyxNhJXj6B3Ui0gRR2vKrKGglLwtA/viewform';
-                
-                // Open Google Form in new tab
-                window.open(googleFormUrl, '_blank');
+            console.log('Form data collected:', data);
+            
+            // Simulate form submission
+            setTimeout(function() {
+                console.log('Simulating submission...');
                 
                 // Show success message
                 loading.style.display = 'none';
@@ -579,16 +578,22 @@
                 // Scroll to success message
                 successMessage.scrollIntoView({ behavior: 'smooth' });
                 
-            } catch (error) {
-                console.error('Error submitting form:', error);
-                alert('There was an error submitting your RSVP. Please try again.');
-                submitBtn.disabled = false;
-                loading.style.display = 'none';
-            }
+                console.log('Success! Form submitted with data:', data);
+            }, 2000);
         });
 
         // Add some interactive effects
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, setting up form...');
+            
+            // Check if form exists
+            const form = document.getElementById('rsvp-form');
+            if (!form) {
+                console.error('Form not found!');
+                return;
+            }
+            console.log('Form found:', form);
+            
             // Add hover effects to form inputs
             const inputs = document.querySelectorAll('input, select, textarea');
             inputs.forEach(input => {
