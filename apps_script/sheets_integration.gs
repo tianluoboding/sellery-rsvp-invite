@@ -37,6 +37,17 @@ function createSpreadsheetIfNeeded() {
   }
 }
 
+// Function to handle GET requests (for testing)
+function doGet(e) {
+  return ContentService
+    .createTextOutput(JSON.stringify({
+      success: true,
+      message: "Google Apps Script is working!",
+      timestamp: new Date().toISOString()
+    }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
 // Function to handle form submission
 function doPost(e) {
   try {

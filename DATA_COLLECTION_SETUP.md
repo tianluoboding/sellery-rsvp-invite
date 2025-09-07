@@ -11,7 +11,7 @@
 3. 命名为 "Sellery NYC Anniversary RSVP Responses"
 4. 从URL中复制电子表格ID
    - URL格式：`https://docs.google.com/spreadsheets/d/[SPREADSHEET_ID]/edit`
-   - 例如：`1ABC123DEF456GHI789JKL012MNO345PQR678STU901VWX234YZA567BCD890EFG`
+   - 例如：`1brOGzwbTLYmkjsJl3p1T9kDM0pkA965YpUgFudjciWk`
 
 ### 步骤2：设置Google Apps Script
 1. 访问 [script.google.com](https://script.google.com)
